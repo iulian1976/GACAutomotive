@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Top10Vehicle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,7 +68,6 @@ class BaseController extends AbstractController
         $firstPeriodDateString =$firstPeriodDate->getIssuedOn()->format("d M Y H:i:s ");
         $endPeriodDateString=$endPeriodDate->getIssuedOn()->format('d M Y H:i:s');
 
-        $categoryDiesel=$this->getDoctrine()->getRepository('App\Entity\Expense')->findByCategory("diesel");
 
         return $this->render('base/index.html.twig', [
             'nbrRowCsv' =>  $nbrRowCsv,

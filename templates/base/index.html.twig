@@ -57,13 +57,13 @@
                     <div class="tile is-parent">
                         <article class="tile is-child box">
                             <h2>{{debutPeriode}}</h2>
-                            <p class="subtitle">Debut de la periode</p>
+                            <p class="subtitle">Debut de la période</p>
                         </article>
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child box">
                             <h2>{{finPeriode}}</h2>
-                            <p class="subtitle">Fin periode</p>
+                            <p class="subtitle">Fin de période</p>
                         </article>
                     </div>
                 </div>
@@ -137,6 +137,25 @@
                                     <option value="hydrogen">gpl</option>
                                 </select>
                                 <button class="button  is-pulled-center is-info is-small">Submit <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                            </form>
+                            <div class="media-right">
+                                <div class="tags has-addons">
+                                    <span class="tag is-light">Status:</span>
+                                    <span class="tag is-transit">Ok</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="media order shadow">
+                        <figure class="media-left">
+                            <i class="far fa-box"></i>
+                        </figure>
+                        <div class="media-content">
+                            <p>
+                            <form method="POST" action={{ path("appvehicle") }}>
+                                <b>Début de période </b><input type="text"  name="date_begin" placeholder="exemple: 1/01/2022">
+                                <b>Fin de période </b><input type="text"  name="date_end" placeholder="exemple: 31/01/2022">
+                                <button class="button  is-pulled-center is-info is-small">Top 10 véhicules ---des dépenses--> <i class="fa fa-sign-in" aria-hidden="true"></i></button>
                             </form>
                             <div class="media-right">
                                 <div class="tags has-addons">

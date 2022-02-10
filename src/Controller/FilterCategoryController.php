@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Top10Vehicle;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,6 @@ class FilterCategoryController extends AbstractController
 
         $expense=$resultRequestCategory->getFilter($request->request->get('date_begin'),$request->request->get('date_end'), $expenseArray);
 
-
         return $this->render('filterandcategory/expensesimple.html.twig', [
             'expense' => $expense,
         ]);
@@ -55,8 +55,39 @@ class FilterCategoryController extends AbstractController
         $expense=$resultRequestCategory->getFilterCategory($request->request->get('date_begin'),$request->request->get('date_end'),$request->request->get('category_value'), $expenseArray);
 
 
+
         return $this->render('filterandcategory/categoryexpence.html.twig', [
             'expense' => $expense,
         ]);
     }
+
+    /**
+     * @Route("/appvehicle", name="appvehicle")
+     *
+     */
+    public function appVehicle(FilterTimeProduction $resultRequestCategory,Request $request,Top10Vehicle $vehicleobjTop10vehicle,FilterTimeProduction $filtertimeVehicle): Response
+    {
+
+
+        $vehicleArray=$this->getDoctrine()->getRepository('App\Entity\Vehicle')->findBy(array());
+        $expenseArray=$this->getDoctrine()->getRepository('App\Entity\Expense')->findBy(array(), array('issuedOn' => 'ASC'));
+
+
+        $vehicleExpenseDistinct=$vehicleobjTop10vehicle->SumAmountVehicle($vehicleArray,$expenseArray);
+
+        $filtertimeVehicle->getVehicleFilter($request->request->get('date_begin'),$request->request->get('date_end'),$vehicleExpenseDistinct,$expenseArray);
+
+        return $this->render('filterandcategory/categoryexpence.html.twig', [
+            'expense' => 'hi',
+        ]);
+    }
 }
+
+
+
+
+
+
+
+
+
